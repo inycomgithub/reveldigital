@@ -174,10 +174,10 @@
         padding: 10px;
         font-size: 6.5em;
         text-align: end;
-        width: 30%;
+        width: 33%;
         position: absolute;
         top: 250px;
-        left: 300px;
+        left: 500px;
     }
     #top-label{
         color: #17700e;
