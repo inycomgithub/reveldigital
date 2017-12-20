@@ -222,9 +222,6 @@
 		border-bottom-left-radius: 10px;
     		margin-top: 6px !important;
  	}
-    .col-3 > table{
-        margin-left: 250px;
-    }
 
 </style>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
