@@ -54,12 +54,11 @@
     }
 
     #daysSinceAccident{
-        position: absolute;
-        width: 870px;
-        height: 400px;
+        position: relative;
+        width: 60%;
+        height: 450px;
         top: 295px;
-        left: 535px;
-        margin: 0 auto;
+        margin: 0 auto !important;
         background: white;
         border-radius: 15px;
         box-shadow: 0px 3px 69px 15px rgba(0,0,0,0.14);
@@ -71,7 +70,7 @@
     .black-text {
         color: black;
         font-weight: bold;
-        font-size: 19em;
+        font-size: 26em;
         width: 30%;
     }
 
@@ -79,7 +78,7 @@
         position: absolute;
         color: #1f542f;
         font-weight: bold;
-        font-size: 3em;
+        font-size: 5em;
         text-align: center;
     }
 
@@ -101,17 +100,14 @@
         background-color:yellow;
     }
     .centerTopText{
-        top: 175px;
-        left: 750px;
+        top: 100px;
+        left: 760px;
         width: 400px;
     }
     .centerBottomText{
-        top: 650px;
-        left: 560px;
+        top: 700px;
+        left: 580px;
         width: 800px;
-    }
-    body{
-
     }
 </style>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
