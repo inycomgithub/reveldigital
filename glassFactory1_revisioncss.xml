@@ -228,11 +228,16 @@
 <body>
 <div class="slide">
     <div class="row centered upper">
-        <div class="col-9">
+        <div class="col-4">
             <span id="mid-label" class="bottom-aligned">Rendimiento Fabrica</span>
         </div>
 
-        <div class="col-3">
+
+        <div class="col-5">
+            <span id="top-label" class="bottom-aligned"></span>
+        </div>
+
+        <div class="col-4">
             <table border="0">
                 <tr>
                     <td colspan="2">
