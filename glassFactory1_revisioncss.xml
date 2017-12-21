@@ -177,7 +177,7 @@
         width: 33%;
         position: absolute;
         top: 250px;
-        left: 500px;
+        left: 600px;
     }
     #top-label{
         color: #17700e;
