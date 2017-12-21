@@ -173,7 +173,7 @@
         color: #17700e;
         padding: 10px;
         font-size: 6.5em;
-        text-align: end;
+        text-align: center;
         width: 33%;
         position: absolute;
         top: 250px;
