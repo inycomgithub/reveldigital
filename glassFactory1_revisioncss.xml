@@ -85,11 +85,11 @@
     }
     .data-label {
         font-size: 1.8em;
+	padding-top: 0.5em;
     }
     .data-label:after {
         content:"\a\a";
         white-space: pre;
-	margin-top: -0.5em !important;
     }
     .big-label {
         background-color: #17700e;
