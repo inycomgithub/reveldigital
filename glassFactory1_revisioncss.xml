@@ -176,7 +176,7 @@
         text-align: center;
         width: 33%;
         position: absolute;
-        top: 250px;
+        top: 220px;
         left: 600px;
     }
     #top-label{
