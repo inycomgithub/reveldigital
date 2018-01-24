@@ -223,6 +223,14 @@
     		margin-top: 6px !important;
  	}
 
+	    /* 2dos ajustes */
+    #date,
+    #day,
+    #month{
+        color: #17700e;
+        font-size: 3.5em;
+    }
+
 </style>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <body>
