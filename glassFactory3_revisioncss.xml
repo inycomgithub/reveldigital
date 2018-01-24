@@ -217,7 +217,7 @@
         setInfo("init gadget " + ENDPOINT);
 
         getFile("accidentes.txt", processRechazosData);
-        setInterval(function() { getFile("accidentes.txt", processRechazosData) }, 12*1000*60);
+        setInterval(function() { getFile("accidentes.txt", processRechazosData) }, 20*1000*60);
 
     }
 
