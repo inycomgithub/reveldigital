@@ -85,7 +85,7 @@
     }
     .data-label {
         font-size: 1.8em;
-	padding-top: 0.5em !important;
+	padding-top: 1.5em !important;
     }
     .data-label:after {
         content:"\a\a";
