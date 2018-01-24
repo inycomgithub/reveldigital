@@ -88,7 +88,7 @@
 	margin-bottom: -0.5em !important;
     }
     .data-label:after {
-        content:"\a";
+        content:"\a\a";
         white-space: pre;
     }
     .big-label {
