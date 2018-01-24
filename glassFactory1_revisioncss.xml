@@ -285,7 +285,7 @@
     var prefs = new gadgets.Prefs();
     var addr = prefs.getString("serverAddr");
     var ENDPOINT = addr;
-	var INTERVAL = 1 * 60 * 1000; // minutes * seconds * 1000 milliseconds
+	var INTERVAL = 20 * 60 * 1000; // minutes * seconds * 1000 milliseconds
 	var ROTATE_INTERVAL = 20 * 1000; // seconds * 1000 milliseconds
     var LINEAR_HORNO_ID = 0;
     var LINEAR_DATA = [];
