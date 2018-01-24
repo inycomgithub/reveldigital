@@ -89,6 +89,7 @@
     .data-label:after {
         content:"\a\a";
         white-space: pre;
+	margin-top: -0.5em !important;
     }
     .big-label {
         background-color: #17700e;
