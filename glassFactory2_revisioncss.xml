@@ -137,7 +137,7 @@
     .table-data-field {
         display: block;
         color: green;
-        font-size: 2.2em;
+        font-size: 2.8em;
         background-image: linear-gradient(rgba(120, 120, 120, 0.5),rgba(120, 120, 120, 0.5));
     }
 
