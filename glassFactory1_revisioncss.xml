@@ -231,7 +231,7 @@
         font-size: 2.5em;
     }
     div.col-5 + div.col-5{
-	margin-bottom: -2em !important; 
+	margin-top: 2em !important; 
 }
 
 </style>
