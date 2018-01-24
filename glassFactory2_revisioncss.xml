@@ -202,6 +202,11 @@
          color: white;
          padding: 10px;
      }
+    /* 2dos ajustes */
+    tbody td:first-child span{
+        font-size: 2.7em;
+        color: #17700e;
+    }
 </style>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <body>
@@ -258,7 +263,7 @@
     var prefs = new gadgets.Prefs();
     var addr = prefs.getString("serverAddr");
     var ENDPOINT = addr;
-    var INTERVAL = 1 * 60 * 1000; // minutes * seconds * 1000 milliseconds
+    var INTERVAL = 20 * 60 * 1000; // minutes * seconds * 1000 milliseconds
     var ROTATE_INTERVAL = 20 * 1000; // seconds * 1000 milliseconds
     var RECHAZOS_HORNO_ID = 0;
     var RECHAZOS_DATA = [];
