@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module> 
+<ModulePrefs title="RevelDigital RSS Vertical Scroller" description="Rotates through RSS feed items in a vertical scroller" author="RevelDigital" background="transparent">
+  <UserPref name="feedUrl" display_name="RSS feed URL" datatype="string" />
+  <UserPref name="showHeader" display_name="Display feed title" datatype="bool" default_value="true" />
+  <UserPref name="numItems" display_name="Number of items visible at the same time"  datatype="string" default_value="1" />
+  <UserPref name="maxItems" display_name="Maximum number of feed items" datatype="string" default_value="10" />
+  <UserPref name="pause" display_name="Delay in seconds between items" datatype="string" default_value="5" />
+  <UserPref name="showContent" display_name="Display feed content" datatype="bool" default_value="true" />
+  <UserPref name="snippet" display_name="Display a shortened version of content" datatype="bool" default_value="true" />
+  <UserPref name="showDate" display_name="Display the feed date" datatype="bool" default_value="true" />
+  <UserPref name="includeHTML" display_name="Include HTML in the content" datatype="bool" default_value="true" />
+  <UserPref name="header-style" display_name="Header Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;" required="true" />
+  <UserPref name="date-style" display_name="Dateline Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;font-weight:bold" required="true" />
+  <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<div style="text-align:center;padding:1em 0;"> <h2><a style="text-decoration:none;" href="https://www.zeitverschiebung.net/es/city/3128026"><span style="color:gray;">Hora actual en</span><br />Bilbao, España</a></h2> <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=es&size=large&timezone=Europe%2FMadrid" width="100%" height="140" frameborder="0" seamless></iframe> </div>
+
+
+]]>
+</Content>
+</Module>
