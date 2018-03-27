@@ -3,8 +3,8 @@
 <Locale messages="https://raw.githubusercontent.com/inycomgithub/reveldigital/master/es_ALL.xml"/>
 <Locale lang="ru" messages="https://reveldigital.github.io/reveldigital-gadgets/ru_ALL.xml"/>
 <UserPref name="Units" display_name="Temperature Units" datatype="enum" default_value="f">
-<UserPref name="lang1" display_name="Language" datatype="enum" default_value="a">
-<EnumValue value="a" display_value="SP"/>
+<UserPref name="lang1" display_name="Language" datatype="enum" default_value="SP">
+<EnumValue value="SP" display_value="SP"/>
 <EnumValue value="b" display_value="IT"/>
 <EnumValue value="f" display_value="US"/>
 <EnumValue value="c" display_value="Metric"/>
@@ -25,5 +25,3 @@
 ]]>
 </Content>
 </Module>
-
-
