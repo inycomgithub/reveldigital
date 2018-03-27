@@ -1,6 +1,6 @@
 <messagebundle>
-<msg name="Lang">es</msg>
-<msg name="Today">Hoy</msg>
+<msg name="Lang">en</msg>
+<msg name="Hoy">Today</msg>
 <msg name="Currently">Currently</msg>
 <msg name="Tomorrow">Tomorrow</msg>
 <msg name="High">High</msg>
