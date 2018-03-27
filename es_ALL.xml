@@ -1,10 +1,10 @@
 <messagebundle>
 <msg name="Lang">en</msg>
-<msg name="Today">Today1</msg>
+<msg name="Today">Hoy</msg>
 <msg name="Currently">Ahora</msg>
-<msg name="Mañana">Tomorrow</msg>
-<msg name="High">High</msg>
-<msg name="Low">Low</msg>
+<msg name="Tomorrow">Mañana</msg>
+<msg name="High">Máxima</msg>
+<msg name="Low">Mínima</msg>
 <msg name="Calendar_TimeFormat">h:mm a</msg>
 <msg name="Calendar_DateFormat">ddd MMMM Do</msg>
 </messagebundle>
