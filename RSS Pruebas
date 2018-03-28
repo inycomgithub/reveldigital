@@ -38,9 +38,9 @@
     __UP_myStylePref__;
   }
 </style>
-<!-- start feedwind code --> <script type="text/javascript" src="https://feed.mikle.com/js/fw-loader.js" data-fw-param="72895/"></script> <!-- end feedwind code -->
-
-
+<<script type="text/javascript" language="javascript" src="http://www.rssdog.com/index.htm?url=http%3A%2F%2Fitunes.apple.com%2Fus%2Frss%2Ftopalbums%2Flimit%3D10%2F**genre%3D1007**%2Fxml&amp;mode=javascript&amp;showonly=&amp;maxitems=0&amp;showdescs=1&amp;desctrim=0&amp;descmax=0&amp;tabwidth=100%25&amp;xmlbtn=1&amp;linktarget=_blank&amp;textsize=inherit&amp;bordercol=%23d4d0c8&amp;headbgcol=%23999999&amp;headtxtcol=%23ffffff&amp;titlebgcol=%23f1eded&amp;titletxtcol=%23000000&amp;itembgcol=%23ffffff&amp;itemtxtcol=%23000000&amp;ctl=0">
+</script>
+<noscript> You apparently do not have JavaScript enabled on your browser lest you would be viewing an RSS Feed here from <a href="http://www.rssdog.com/">RSS Dog</a> </noscript>
 ]]>
 </Content>
 </Module>
