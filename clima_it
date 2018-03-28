@@ -1,0 +1,10 @@
+<messagebundle>
+<msg name="Lang">it</msg>
+<msg name="Today">Oggi</msg>
+<msg name="Currently">Attualmente</msg>
+<msg name="Tomorrow">Domani</msg>
+<msg name="High">Massima</msg>
+<msg name="Low">Minima</msg>
+<msg name="Calendar_TimeFormat">h:mm a</msg>
+<msg name="Calendar_DateFormat">ddd MMMM Do</msg>
+</messagebundle>
