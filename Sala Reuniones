@@ -276,7 +276,7 @@
 
             if (items.length == 0) {
                 h1 = $("<h1 />");
-                h1.text("Available");
+                h1.text("Sala Disponible");
                 $(event).append(h1);
                 return;
             }
