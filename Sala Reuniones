@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+<ModulePrefs title="RevelDigital Meeting Room Gadget" title_url="https://support.reveldigital.com/hc/en-us/articles/360002538071-Meeting-room-gadget" description="Displays meeting room availability" author="RevelDigital" background="transparent">
+  <Locale messages="https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml"/>
+  <Locale lang="ru" messages="https://reveldigital.github.io/reveldigital-gadgets/ru_ALL.xml"/>
+  <UserPref name="calendarUrl" display_name="Google Calendar ID or URL" datatype="string" />
+  <UserPref name="searchQuery" display_name="Location/Room Name" datatype="string" />
+  <UserPref name="showRoom" display_name="Show Location/Room Name" datatype="bool" default_value="true" />
+  <UserPref name="showNext" display_name="Show Next Event" datatype="bool" default_value="true" />
+  <UserPref name="maxResults" display_name="Max Number of Events" datatype="string" default_value="15" />
+  <UserPref name="futureEvents" display_name="Limit Future Events"  datatype="enum" default_value="365">
+    <EnumValue value="365" display_value="No Limit" />
+    <EnumValue value="0" display_value="Today" />
+    <EnumValue value="7" display_value="Next 7 Days" />
+    <EnumValue value="30" display_value="Next 30 Days" />
+  </UserPref>
+  <UserPref name="body-style" display_name="Body Style" datatype="style" default_value="font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;" required="true" />
+  <UserPref name="rdW" display_name="Width" required="true" default_value="280" datatype="hidden" />
+  <UserPref name="rdH" display_name="Height" required="true" default_value="190" datatype="hidden" />
+  <UserPref name="ForeColor" datatype="hidden" />
+  <UserPref name="BackColor" datatype="hidden" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+
+    <style type="text/css">
+        body * {
+            line-height: 1.2em;
+            letter-spacing: 0;
+            word-spacing: normal;
+        }
+
+        body {
+            overflow: hidden;
+            background: transparent;
+            width: __UP_rdW__px;
+            height: __UP_rdH__px;
+        }
+
+        body, td, div, span, p {
+            __UP_body-style__;
+        }
+
+        h2, h3 {
+            margin: 0;
+        }
+
+        #data {
+            font-size: 5vh;
+            position: relative;
+            width: __UP_rdW__px;
+            height: __UP_rdH__px;
+            background-color: #__UP_BackColor__;
+            __UP_body-style__;
+        }
+
+        #room {
+            font-size: 1em;
+            position: absolute;
+            top: 1vh;
+            left: 1vw;
+        }
+
+        #event {
+            width: __UP_rdW__px;
+            text-align: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            /* bring your own prefixes */
+            transform: translate(-50%, -50%);
+        }
+
+            #event h1 {
+                font-size: 3em;
+                padding-bottom: 0;
+                margin-bottom: 0;
+                margin-top: 0;
+            }
+
+        .currentEvent {
+            font-size: 1.5em;
+        }
+
+            .currentEvent svg {
+                margin-right: 30px;
+            }
+
+        #next {
+            font-size: 1em;
+            position: absolute;
+            width: calc(100% - 1vw);
+            bottom: 1vh;
+            left: 1vw;
+        }
+
+            #next h3 {
+                font-size: 1em;
+                margin-bottom: 0;
+                top: 0;
+                left: 0;
+            }
+
+        .nextEvent {
+            font-size: 1em;
+            padding-bottom: 0;
+            padding-top: 0;
+            margin-bottom: 0;
+            margin-top: 0;
+            padding-left: 5%;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+    <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/vminpoly.js"></script>
+    <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-with-locales.min.js" type="text/javascript"></script>
+    <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/moment-timezone-with-data.min.js" type="text/javascript"></script>
+    <script src="https://reveldigital.github.io/reveldigital-gadgets/third-party/simpledateformat.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script src="https://reveldigital.github.io/gadget-common/utils.js" type="text/javascript"></script>
+    <script src="https://www.google.com/jsapi" type="text/javascript"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+
+
+    <div id="data">
+        <div id="room">
+            <h2>__UP_searchQuery__</h2>
+        </div>
+        <div id="event">
+        </div>
+        <div id="next">
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        var prefs = new gadgets.Prefs();
+
+        function load() {
+
+            WebFont.load({
+                google: {
+                    families: [
+                        RevelDigital.getFamilyName(prefs.getString("body-style"))
+                    ]
+                }
+            });
+
+            moment.locale("__MSG_Lang__");
+
+            if (typeof Client != "undefined" && typeof (Client.getDeviceTimeZoneName) == "function") {
+                moment.tz.setDefault(Client.getDeviceTimeZoneName());
+            }
+
+            if (!prefs.getBool("showRoom")) {
+                $("#room").hide();
+            }
+            if (!prefs.getBool("showNext")) {
+                $("#next").hide();
+            }
+
+            getCalendarData();
+
+            setInterval(update, 60000);
+        }
+
+        gadgets.util.registerOnLoadHandler(load);
+
+    </script>
+
+    <script type="text/javascript">
+
+        function update() {
+            var now = moment();
+            if (now.minute() == 0 || now.minute() == 30) {
+                console.log("UPDATING AT: " + now);
+                getCalendarData();
+            } else {
+                console.log("NO UPDATE AT: " + now);
+            }
+        }
+
+        function getCalendarData() {
+
+            var key = 'AIzaSyDN8dkir1si9vMwWJYz64YCsUIhFustgL8';
+            var queryParams = '&singleEvents=true&maxResults=' + prefs.getInt("maxResults") + '&orderBy=startTime';
+
+            //var dfMin = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.000ZZ");
+            //var dfMax = new SimpleDateFormat("yyyy-MM-dd'T'23:59:59.000ZZ");
+            //var tomorrow = new Date();
+            //tomorrow.setDate(new Date().getDate() + "365");
+            //var min = dfMin.format(new Date());
+            //var max = dfMax.format(tomorrow);
+
+            var min = moment().utc().format();
+            var max = moment().add(prefs.getInt("futureEvents"), 'days').utc().format();
+            
+            queryParams += '&timeMin=' + encodeURIComponent(min);
+            queryParams += '&timeMax=' + encodeURIComponent(max);
+
+            if (prefs.getString("searchQuery") != '') {
+                queryParams += '&q=' + encodeURIComponent(prefs.getString("searchQuery"));
+            }
+
+            var url = 'https://www.googleapis.com/calendar/v3/calendars/' + googleUrl(prefs.getString("calendarUrl")) + '/events?key=' + key + queryParams;
+
+            $("#event").empty();
+            $("#next").empty();
+
+            $.ajax({
+                type: 'GET',
+                url: url,
+                dataType: 'json'
+            })
+                .done(function (response) {
+                    formatEvent(response.items);
+                })
+                .fail(function (xhr, err) {
+                    console.log(url);
+                    console.log('get calendar failed: ' + xhr.responseText);
+                });
+        }
+
+        function formatNext(item) {
+
+            var next = $("#next");
+
+            var startDateTime = item.start.dateTime ? item.start.dateTime : item.start.date;
+            var endDateTime = item.end.dateTime ? item.end.dateTime : item.end.date;
+
+            var isAllDay = false;
+            if (startDateTime) {
+                if (item.start.date) {
+                    isAllDay = true;
+                }
+            }
+
+            var nsd = moment(startDateTime).format("__MSG_Calendar_DateFormat__");
+            var nst = moment(startDateTime).format("__MSG_Calendar_TimeFormat__");
+            var net = moment(endDateTime).format("__MSG_Calendar_TimeFormat__");
+
+            if (isAllDay) {
+                var ned = moment(endDateTime).subtract(1, 'day').format("__MSG_Calendar_DateFormat__");
+            } else {
+                var ned = moment(endDateTime).format("__MSG_Calendar_DateFormat__");
+            }
+
+            h3 = $("<h3 />");
+            $(h3).text("Próximo Evento");
+            $(next).append(h3);
+
+            var p2 = $("<p class=\"nextEvent\"/>");
+            p2.text(item.summary);
+            $(next).append(p2);
+
+            var p3 = $("<p class=\"nextEvent\"/>");
+
+            var time2 = "";
+            if (nsd == ned) {
+                time2 += nsd;
+            } else {
+                time2 += nsd + " - " + ned;
+            }
+            if (isAllDay) {
+                p3.text(time2);
+            } else {
+                p3.text(time2 + ", " + nst + " - " + net);
+            }
+            $(next).append(p3);
+        }
+        
+        function formatEvent(items) {
+        
+            var event = $("#event");
+            var next = $("#next");
+
+            if (items.length == 0) {
+                h1 = $("<h1 />");
+                h1.text("Available");
+                $(event).append(h1);
+                return;
+            }
+            
+            var eventStartTime = items[0].start.dateTime ? items[0].start.dateTime : items[0].start.date;
+            var eventEndTime = items[0].end.dateTime ? items[0].end.dateTime : items[0].end.date;
+            var startTime = moment(eventStartTime);
+            var endTime = moment(eventEndTime);
+
+            var now = moment(); // use moment to get the now() in device timezone
+            
+            if (now.isBetween(startTime, endTime)) {
+
+                var isAllDay = false;
+                if (items[0].start.date) {
+                    isAllDay = true;
+                }
+
+                h1 = $("<h1 />");
+                h1.text(items[0].summary);
+                $(event).append(h1);
+
+                var sd = moment(eventStartTime).format("__MSG_Calendar_DateFormat__");
+                var st = moment(eventStartTime).format("__MSG_Calendar_TimeFormat__");
+                var et = moment(eventEndTime).format("__MSG_Calendar_TimeFormat__");
+
+                if (isAllDay) {
+                    var ed = moment(eventEndTime).subtract(1, 'day').format("__MSG_Calendar_DateFormat__");
+                } else {
+                    var ed = moment(eventEndTime).format("__MSG_Calendar_DateFormat__");
+                }
+
+                var p = $("<p class=\"currentEvent\"><i class=\"fas fa-clock\"></i></p>");
+
+                var time = '';
+                if (sd == ed) {
+                    time += sd;
+                } else {
+                    time += sd + " - " + ed;
+                }
+                if (isAllDay) {
+                    p.append(time);
+                } else {
+                    p.append(st + " - " + et);
+                }
+                $(event).append(p);
+
+                if (items.length > 1) {
+                    formatNext(items[1]);
+                }
+            } else {
+                h1 = $("<h1 />");
+                h1.text("Available");
+                $(event).append(h1);
+                
+                formatNext(items[0]);
+            }
+        }
+
+        var docIdFromUrl = function (url) { return url.match(/[-\w]{25,}/); }
+
+        var googleUrl = function (sourceIdentifier) {
+
+            if (sourceIdentifier.match(/http(s)*:/)) {
+                try {
+                    return sourceIdentifier.match(/[ical|feeds]\/(.*?)\/public\//)[1];
+                } catch (error) {
+                    return sourceIdentifier.match(/[ical|feeds]\/(.*?)\/private-(.*?)\//)[1];
+                }
+            } else {
+                return encodeURIComponent(sourceIdentifier);
+            }
+        }
+
+    </script>
+]]>
+</Content>
+</Module>
