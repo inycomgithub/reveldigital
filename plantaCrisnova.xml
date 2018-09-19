@@ -16,11 +16,13 @@
    * {
         box-sizing: border-box;
     }
+
     html,body {
         height: 100%;
         margin: 0px;
         padding: 0px;
     }
+
     html {
         font-family: "Lucida Sans", sans-serif;
     }
@@ -29,6 +31,7 @@
         overflow-x: hidden;
         background-color: transparent;
         font-family: 'Roboto', sans-serif;
+
         background-repeat: no-repeat;
         background-position: 50% 0;
         -ms-background-size: cover;
@@ -36,7 +39,9 @@
         -moz-background-size: cover;
         -webkit-background-size: cover;
         background-size: cover;
-    margin-bottom: 50px;
+
+	margin-bottom: 50px;
+
     }
     .row::after {
         content: "";
@@ -65,7 +70,7 @@
         background-color: #f6fcf4;
         color: #17700e;
         padding: 0;
-        margin-right: 70px;
+	    margin-right: 70px;
         font-size: 4.3em;
         width: 400px;
         border-top-right-radius: 5px;
@@ -73,17 +78,17 @@
     }
     .num{
         font-size: 3.5em;
-        color:#17700e;
-        background-color:#f6fcf4;
-        border: 1px solid #17700e;
-        border-radius: 10px;
+	    color:#17700e;
+	    background-color:#f6fcf4;
+	    border: 1px solid #17700e;
+	    border-radius: 10px;
     }
     .data-label {
         font-size: 1.8em;
     }
     .data-label:after {
-        content:"\a";
-        white-space: pre;
+        content:"\a\a";
+        display: block;
     }
     .big-label {
         background-color: #17700e;
@@ -101,11 +106,13 @@
     }
     .pct:after {
         content:"%";
+
         background-color: #17700e;
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;
-        border: 1px solid #17700e;
+	    border: 1px solid #17700e;
         color: white;
+
     }
     .company-logo {
         max-width: 25vw;
@@ -118,7 +125,7 @@
         background-color: #17700e;
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;
-        border: 1px solid #17700e:
+	    border: 1px solid #17700e:
         color: white;
         padding: 10px;
         font-size: 2em;
@@ -129,6 +136,7 @@
         font-size: 2em;
         width: 30%;
     }
+
     .shaded-background {
         background-image: linear-gradient(rgba(53, 53, 53, 0),rgba(53, 53, 53, 0));
     }
@@ -145,7 +153,7 @@
     .table-data-field {
         display: block;
         color: 17700e;
-        font-size: 3.3em;
+        font-size: 4em !important;
         background-image: linear-gradient(rgba(120, 120, 120, 0.5),rgba(120, 120, 120, 0.5));
     }
     .slide {
@@ -165,10 +173,10 @@
         color: #17700e;
         padding: 10px;
         font-size: 6.5em;
-        text-align: center;
+        text-align: end;
         width: 33%;
         position: absolute;
-        top: 220px;
+        top: 250px;
         left: 600px;
     }
     #top-label{
@@ -180,6 +188,7 @@
         position: absolute;
         top: 100px;
     }
+
     .bottom-aligned {
         position: absolute;
         bottom: 20;
@@ -193,8 +202,8 @@
     }
     .data-field:empty + .green-pct {
         display: none !important;
-        border: 1px solid #17700e;
-        border-radius: 10px;
+	    border: 1px solid #17700e;
+	    border-radius: 10px;
     }
     span:empty + span {
         display: none !important;
@@ -202,26 +211,54 @@
     .big-label:empty {
         display: none;
     }
+
     #infoContainer {
         font-size: 75%;
         color: red;
     }
-    .data-field{
-        border: 2px solid #17700e;
-        border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
-            margin-top: 6px !important;
-    }
-        /* 2dos ajustes */
+	.data-field{
+		border: 2px solid #17700e;
+		border-top-left-radius: 10px;
+		border-bottom-left-radius: 10px;
+        margin-top: 6px !important;
+        background-color: #fff;
+ 	}
+    /* 2dos ajustes */
     #date,
     #day,
     #month{
         color: #17700e;
-        font-size: 2.5em;
-    }
+        font-size: 3em;
+    }    
     div.col-5 + div.col-5{
-    margin-top: 4em !important; 
-}
+        margin-top: 4em !important; 
+    }
+    #data-table .data-field{
+        font-size: 5.6em;
+        margin-right: 10px;
+        margin-top: 0px !important;
+    }
+    #data-table .num{
+        border: 0;
+        background-color: transparent;
+        color: #7E7E7E;
+        margin-left: -35px;
+        margin-right: 14px;
+    }
+
+    #data-table{
+        margin-top: -40px !important;
+    }
+
+    .col-5 .tabla{
+        margin-top: -30px !important;
+        margin-left: -30px !important;
+    }
+    
+    .col-2 .bottom-aligned{
+        text-align: center !important;
+        margin-top: -60px !important;
+    }
 </style>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <body>
